@@ -4,7 +4,11 @@
 //   });
 // });
 
-tinymce.init({ selector: "textarea" });
+tinymce.init({
+  selector: "textarea",
+  license_key: "gpl",
+  readonly: false,
+});
 
 $(document).ready(function () {
   $("#selectAllBoxes").click(function (event) {

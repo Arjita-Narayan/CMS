@@ -34,7 +34,7 @@ if (isset($_GET['edit_user'])) {
         $username = $_POST['username'];
         $user_email = $_POST['user_email'];
         $user_password = $_POST['user_password'];
-        $post_date = date('d-m-y'); // Use 'Y-m-d' format for MySQL
+        // $post_date = date('d-m-y'); // Use 'Y-m-d' format for MySQL
 
 
         // move_uploaded_file($post_image_temp, "../images/$post_image");

@@ -16,7 +16,7 @@ function users_online()
 
         if (!$connection) {
             session_start();
-            include("../includes/db.php");
+            include ("../includes/db.php");
             $session = session_id();
             $time = time();
             $time_out_in_seconds = 05;
@@ -105,6 +105,49 @@ function deleteCategories()
         header("Location:categories.php");//this line is used for refreshing the page
     }
 
+}
+//used this for dynamic display of
+function recordCount($table)
+{
+    global $connection;
+    $query = "SELECT * FROM $table";
+    $result = mysqli_query($connection, $query);
+    $count = mysqli_num_rows($result);
+    confirmQuery($result);
+    return $count;
+}
+
+function is_admin($username = '')
+{
+    global $connection;
+    $query = "SELECT user_role FROM users WHERE username = '$username'";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+
+    $row = mysqli_fetch_array($result);
+
+    if ($row['user_role'] == 'admin') {
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function username_exists($username)
+{
+    global $connection;
+
+
+    $query = "SELECT username FROM users WHERE username = '$username'";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 

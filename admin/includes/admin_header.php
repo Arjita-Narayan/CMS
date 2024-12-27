@@ -45,7 +45,7 @@ if (!isset($_SESSION["user_role"])) {
     <link href="css/styles.css" rel="stylesheet">
     <!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
 
-    <link rel="stylesheet" href="css/summernote.css">
+    <!-- <link rel="stylesheet" href="css/summernote.css"> -->
 
     <script src="js/jquery.js"></script>
 
@@ -53,6 +53,9 @@ if (!isset($_SESSION["user_role"])) {
 
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 <body>

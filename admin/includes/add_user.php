@@ -1,9 +1,6 @@
 <?php
 
 
-
-
-
 if (isset($_POST['create_user'])) {
     $user_firstname = $_POST['user_firstname'];
     $user_lastname = $_POST['user_lastname'];
@@ -17,7 +14,8 @@ if (isset($_POST['create_user'])) {
     $user_password = $_POST['user_password'];
     // $post_date = date('d-m-y'); // Use 'Y-m-d' format for MySQL
 
-    $user_password = password_hash('$user_password', PASSWORD_BCRYPT, array('cost' => 10));
+    $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 10));
+
 
 
     // move_uploaded_file($post_image_temp, "../images/$post_image");

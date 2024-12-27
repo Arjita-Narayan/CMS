@@ -34,14 +34,23 @@
 
 
 
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+                $post_query_count = "SELECT * from posts";
+            } else {
+                $post_query_count = "SELECT * FROM posts WHERE post_status = 'published'";
+            }
 
-            $post_query_count = "SELECT * FROM posts WHERE post_status = 'published'";
+
+
+
+
             $find_count = mysqli_query($connection, $post_query_count);
             $count = mysqli_num_rows($find_count);
 
             if ($count < 1) {
-                echo "<h1 class='text-center'>NO POSTS</h1>";
+                echo "<h1 class='text-center'>NO POSTS AVAILABLE</h1>";
             } else {
+
 
 
                 $count = ceil($count / $per_page);//ceil function is used to roundoff the float value into integer
@@ -59,18 +68,20 @@
                     $post_author = $row['post_user'];
                     $post_date = $row['post_date'];
                     $post_image = $row['post_image'];
-                    $post_content = substr($row['post_content'], 0, 100);
+                    $post_content = substr($row['post_content'], 0, 400);
                     $post_status = $row['post_status'];
+
+
 
 
 
                     ?>
 
 
-                    <h1 class="page-header">
+                    <!-- <h1 class="page-header">
                         Page Heading
                         <small>Secondary Text</small>
-                    </h1>
+                    </h1> -->
 
                     <!-- First Blog Post -->
 
@@ -105,7 +116,9 @@
                     <hr>
 
                 <?php }
-            } ?>
+            }
+
+            ?>
 
         </div>
 
@@ -119,23 +132,14 @@
     <hr>
     <ul class="pager">
         <?php
-
         for ($i = 1; $i <= $count; $i++) {
-
-
             if ($i == $page) {
-                echo "<li '><a class='active_link' href='index.php?page={$i}'>{$i}</a></li>";
-
+                echo "<li><a class='active_link' href='index.php?page={$i}'>{$i}</a></li>";
             } else {
-
-
-                echo "<li '><a href='index.php?page={$i}'>{$i}</a></li>";
+                echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
             }
         }
-
         ?>
-
-
     </ul>
 
 

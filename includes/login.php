@@ -1,18 +1,10 @@
-<?php include "db.php"; ?>
-
-<?php session_start(); ?>
-
-
 <?php
+include "db.php";
+session_start();
+
 if (isset($_POST['login'])) {
-
-
-
-    $username = $_POST['username'];
+    $username = mysqli_real_escape_string($connection, $_POST['username']);
     $password = $_POST['password'];
-
-    $username = mysqli_real_escape_string($connection, $username);
-    $password = mysqli_real_escape_string($connection, $password);
 
     $query = "SELECT * FROM users WHERE username = '{$username}'";
     $select_user_query = mysqli_query($connection, $query);
@@ -20,35 +12,28 @@ if (isset($_POST['login'])) {
         die("QUERY FAILED" . mysqli_error($connection));
     }
 
-
-    while ($row = mysqli_fetch_array($select_user_query)) {
-        $db_user_id = $row['user_id'];
-        $db_username = $row['username'];
-        $db_user_password = $row['user_password'];
-        $db_user_firstname = $row['user_firstname'];
-        $db_user_lastname = $row['user_lastname'];
-        $db_user_role = $row['user_role'];
-
-
+    if (mysqli_num_rows($select_user_query) == 0) {
+        // User not found
+        header("Location: ../index.php");
+        exit;
     }
-    // $password = crypt($password, $db_user_password);-->this line of code is not making me login
 
+    $row = mysqli_fetch_assoc($select_user_query);
+    $db_user_password = $row['user_password'];
 
-    if ($username !== $db_username && $password !== $db_user_password) {
-        header("Location: ../index.php ");
-    } else if ($username == $db_username && $password == $db_user_password) {
-
-
-        $_SESSION['username'] = $db_username;
-        $_SESSION['firstname'] = $db_user_firstname;
-        $_SESSION['lastname'] = $db_user_lastname;
-        $_SESSION['user_role'] = $db_user_role;
+    // Verify the password
+    if (password_verify($password, $db_user_password)) {
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['firstname'] = $row['user_firstname'];
+        $_SESSION['lastname'] = $row['user_lastname'];
+        $_SESSION['user_role'] = $row['user_role'];
 
         header("Location: ../admin");
+        exit;
     } else {
+        // Incorrect password
         header("Location: ../index.php");
+        exit;
     }
 }
-
-
 ?>

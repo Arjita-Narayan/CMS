@@ -1,5 +1,6 @@
 <?php include "includes/db.php"; ?>
 <?php include "includes/header.php"; ?>
+<?php include "admin/functions.php"; ?>
 
 
 <?php
@@ -10,13 +11,19 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
 
 
+    if (username_exists($username)) {
+        $message = "user exists";
+    }
+
+
     if (!empty($username) && !empty($email) && !empty($password)) {
 
         $username = mysqli_real_escape_string($connection, $username);
         $email = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
 
-        $password = password_hash('$password', PASSWORD_BCRYPT, array('cost' => 12));
+        $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+
 
         // $query = "SELECT randSalt FROM users";
         // $select_randsalt_query = mysqli_query($connection, $query);
@@ -42,7 +49,7 @@ if (isset($_POST['submit'])) {
 
         }
 
-        $message = "Your Registration has been submitted";
+        // $message = "Your Registration has been submitted";
 
     } else {
         $message = "Fields cannot be empty";
@@ -76,12 +83,6 @@ if (isset($_POST['submit'])) {
                             <h6 class="text-center">
                                 <?php echo $message; ?>
                             </h6>
-
-
-
-
-
-
 
 
 
