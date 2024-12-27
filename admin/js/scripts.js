@@ -1,29 +1,18 @@
-// $(document).ready(function () {
-//   $("#summernote").summernote({
-//     height: 300,
-//   });
-// });
-
+// Initialize TinyMCE
 tinymce.init({
-  selector: "textarea",
+  selector: "#mytextarea",
   license_key: "gpl",
   readonly: false,
 });
 
 $(document).ready(function () {
-  $("#selectAllBoxes").click(function (event) {
-    if (this.checked) {
-      $(".checkBoxes").each(function () {
-        this.checked = true;
-      });
-    } else {
-      $(".checkBoxes").each(function () {
-        this.checked = false;
-      });
-    }
+  // Select All Checkboxes
+  $("#selectAllBoxes").click(function () {
+    $(".checkBoxes").prop("checked", this.checked);
   });
 
-  var div_box = "<div id='load-screen'><div id='loading'></div></div>";
+  // Loading Screen
+  const div_box = "<div id='load-screen'><div id='loading'></div></div>";
   $("body").prepend(div_box);
 
   $("#load-screen")
@@ -33,11 +22,10 @@ $(document).ready(function () {
     });
 });
 
+// Load Online Users
 function loadUsersOnline() {
   $.get("functions.php?onlineusers=result", function (data) {
     $(".usersonline").text(data);
   });
 }
-setInterval(function () {
-  loadUsersOnline();
-}, 500);
+setInterval(loadUsersOnline, 500);

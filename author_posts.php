@@ -32,6 +32,9 @@
             $query = "SELECT * from posts WHERE post_user = '{$the_post_author}' ";
             $select_all_posts_query = mysqli_query($connection, $query);
 
+            echo "<p class='lead'><strong>DISPLAYING All POSTS BY AUTHOR - " . $the_post_author . "</strong></p>";
+
+
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
 
                 $post_title = $row['post_title'];
@@ -42,10 +45,10 @@
                 ?>
 
 
-                <h1 class="page-header">
+                <!-- <h1 class="page-header">
                     Page Heading
                     <small>Secondary Text</small>
-                </h1>
+                </h1> -->
 
                 <!-- First Blog Post -->
                 <h2>
@@ -53,11 +56,7 @@
                         <?php echo $post_title ?>
                     </a>
                 </h2>
-                <p class="lead">
-                    All posts by
-                    <?php echo $post_author ?>
-
-                </p>
+               
                 <p><span class="glyphicon glyphicon-time"></span>
                     <?php echo $post_date ?>
                 </p>

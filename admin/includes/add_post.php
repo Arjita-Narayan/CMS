@@ -1,7 +1,19 @@
 <?php
+session_start();
+include "../includes/db.php";
 if (isset($_POST['create_post'])) {
     $post_title = $_POST['title'];
-    $post_user = $_POST['post_user'];
+
+
+    // Fetch username from session
+    if (isset($_SESSION['username'])) {
+        $post_user = $_SESSION['username'];
+    } else {
+        echo "<p class='bg-danger'>User not logged in.</p>";
+        exit;
+    }
+
+    
     $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
 
@@ -62,25 +74,34 @@ if (isset($_POST['create_post'])) {
         </select>
     </div>
 
-    <div class="form-group">
+
+
+
+    <!-- <div class="form-group">
         <label for="users">Users</label>
         <select name="post_user" id="">
 
             <?php
 
-            $users_query = "SELECT * FROM users ";
-            $select_users = mysqli_query($connection, $users_query);
-            confirmQuery($select_users);
-            while ($row = mysqli_fetch_assoc($select_users)) {
-                $user_id = $row['user_id'];
-                $username = $row['username'];
+            // $users_query = "SELECT * FROM users ";
+            // $select_users = mysqli_query($connection, $users_query);
+            // confirmQuery($select_users);
+            // while ($row = mysqli_fetch_assoc($select_users)) {
+            //     $user_id = $row['user_id'];
+            //     $username = $row['username'];
 
-                echo "<option value='$username'>{$username}</option>";
-            }
+            //     echo "<option value='$username'>{$username}</option>";
+            // }
             ?>
 
         </select>
-    </div>
+    </div> -->
+
+
+
+
+
+    
 
     <!-- <div class="form-group">
         <label for="title">Post Author</label>

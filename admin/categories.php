@@ -13,8 +13,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        Welcome To Admin
-                        <small>Author</small>
+                        Welcome To Categories
+                        <small><?php echo $_SESSION['username'] ?></small>
                     </h1>
 
                     <div class="col-xs-6">

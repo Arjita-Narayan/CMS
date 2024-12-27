@@ -37,17 +37,18 @@
                     while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
                         $post_id = $row['post_id'];
                         $post_title = $row['post_title'];
-                        $post_author = $row['post_author'];
+                        $post_author = $row['post_user'];
+                        // $post_user = $row['post_user'];
                         $post_date = $row['post_date'];
                         $post_image = $row['post_image'];
                         $post_content = substr($row['post_content'], 0, 100);
                         ?>
 
 
-                        <h1 class="page-header">
+                        <!-- <h1 class="page-header">
                             Page Heading
                             <small>Secondary Text</small>
-                        </h1>
+                        </h1> -->
 
                         <!-- First Blog Post -->
                         <h2>
@@ -71,7 +72,7 @@
                         <p>
                             <?php echo $post_content ?>
                         </p>
-                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        <!-- <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a> -->
 
                         <hr>
 

@@ -12,10 +12,7 @@
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
 
-        <!-- <li><a href="">Users Online:
-                <?php //echo users_online();     ?>
-            </a>
-        </li> -->
+       
 
         <li><a href="">Users online: <span class="usersonline"></span>
 
@@ -84,18 +81,26 @@
                 <a href="comments.php"><i class="fa fa-fw fa-file"></i> Comments</a>
             </li>
 
-            <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>
-                    Users <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="demo" class="collapse">
-                    <li>
-                        <a href="users.php">View All Users</a>
-                    </li>
-                    <li>
-                        <a href="users.php?source=add_user">Add User</a>
-                    </li>
-                </ul>
-            </li>
+
+
+<?php
+           // Check if the user role is admin/subscriber
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
+                echo '
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>
+                        Users <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="users.php">View All Users</a>
+                        </li>
+                        <li>
+                            <a href="users.php?source=add_user">Add User</a>
+                        </li>
+                    </ul>
+                </li>';
+            }
+            ?>
 
             <li>
                 <a href="profile.php"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
