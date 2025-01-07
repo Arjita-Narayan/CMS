@@ -37,7 +37,7 @@
                         }
                         ?>
 
-                    </div><!---add category form--->
+                    </div>
 
                     <div class="col-xs-6">
 
@@ -49,13 +49,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php
                                 //Find all categories query
                                 findAllCategories();
                                 ?>
 
-
-                                <?php
+                               <?php
                                 //delete query
                                 deleteCategories();
                                 ?>
@@ -65,12 +65,7 @@
                         </table>
                     </div>
                 </div>
-                <!-- /.row -->
-
             </div>
-            <!-- /.container-fluid -->
-
         </div>
 
-        <!-- /#page-wrapper -->
         <?php include "includes/admin_footer.php" ?>

@@ -30,10 +30,6 @@
             echo "<td>$username</td>";
             echo "<td>$user_firstname</td>";
 
-
-
-
-
             // $query = "SELECT * from categories WHERE cat_id = {$post_category_id}";
             // $select_categories_id = mysqli_query($connection, $query);
         
@@ -76,15 +72,12 @@
 
 <?php
 
-
 if (isset($_GET['change_to_admin'])) {
     $the_user_id = $_GET['change_to_admin'];
 
     $query = "UPDATE users SET user_role = 'admin' WHERE user_id = $the_user_id ";
     $change_to_admin_query = mysqli_query($connection, $query);
     header("Location:users.php");
-
-
 }
 
 
@@ -96,13 +89,12 @@ if (isset($_GET['change_to_sub'])) {
     $change_to_sub_query = mysqli_query($connection, $query);
     header("Location:users.php");
 
-
 }
 
 
 
 if (isset($_GET['delete'])) {
-    //made changes below to prevent sql injection(lec242)
+   
     if (isset($_SESSION['user_role'])) {
 
         if ($_SESSION['user_role'] == 'admin') {

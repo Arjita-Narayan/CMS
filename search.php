@@ -1,5 +1,5 @@
 <?php include "includes/db.php"; ?>
-
+<?php session_start();?>
 
 <?php include "includes/header.php"; ?>
 
@@ -20,7 +20,7 @@
             if (isset($_POST['submit'])) {
                 $search = $_POST['search'];
 
-                $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";
+                $query = "SELECT * FROM posts WHERE post_tags = '$search'";
                 $search_query = mysqli_query($connection, $query);
                 if (!$search_query) {
                     die("QUERY FAILED" . mysqli_error($connection));
@@ -40,13 +40,6 @@
                         $post_content = $row['post_content'];
                         ?>
 
-
-                        <!-- <h1 class="page-header">
-                            Page Heading
-                            <small>Secondary Text</small>
-                        </h1> -->
-
-                        <!-- First Blog Post -->
                         <h2>
                             <a href="#">
                                 <?php echo $post_title ?>

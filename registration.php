@@ -25,21 +25,6 @@ if (isset($_POST['submit'])) {
         $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
 
-        // $query = "SELECT randSalt FROM users";
-        // $select_randsalt_query = mysqli_query($connection, $query);
-
-        // if (!$select_randsalt_query) {
-        //     die("Query Failed" . mysqli_error($connection));
-
-        // }
-
-        // $row = mysqli_fetch_array($select_randsalt_query);
-        // $salt = $row['randSalt'];
-        // $password = crypt($password, $salt);
-
-
-
-
         $query = "INSERT INTO users (username,user_email,user_password,user_role) ";
         $query .= "VALUES('{$username}','{$email}','{$password}','subscriber' )";
         $registration_user_query = mysqli_query($connection, $query);
@@ -49,7 +34,7 @@ if (isset($_POST['submit'])) {
 
         }
 
-        // $message = "Your Registration has been submitted";
+         $message = "Your Registration has been submitted.Please login to get started";
 
     } else {
         $message = "Fields cannot be empty";
@@ -59,12 +44,7 @@ if (isset($_POST['submit'])) {
     $message = "";
 }
 
-
-
-
 ?>
-
-
 <!-- Navigation -->
 
 <?php include "includes/navigation.php"; ?>

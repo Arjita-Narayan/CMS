@@ -2,8 +2,6 @@
 if (isset($_GET['edit_user'])) {
     $the_user_id = $_GET['edit_user'];
 
-
-
     $query = "SELECT * from users WHERE user_id = $the_user_id ";
     $select_users_query = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($select_users_query)) {
@@ -17,27 +15,17 @@ if (isset($_GET['edit_user'])) {
         $user_role = $row['user_role'];
     }
     ?>
+
     <?php
-
-
-
-
 
     if (isset($_POST['edit_user'])) {
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_role = $_POST['user_role'];
-
-        // $post_image = $_FILES['image']['name'];
-        // $post_image_temp = $_FILES['image']['tmp_name'];
-
         $username = $_POST['username'];
         $user_email = $_POST['user_email'];
         $user_password = $_POST['user_password'];
         // $post_date = date('d-m-y'); // Use 'Y-m-d' format for MySQL
-
-
-        // move_uploaded_file($post_image_temp, "../images/$post_image");
 
 
         if (!empty($user_password)) {
@@ -46,18 +34,13 @@ if (isset($_GET['edit_user'])) {
             confirmQuery($get_user_query);
 
             $row = mysqli_fetch_array($get_user_query);
-
-            $db_user_password = $row['user_password'];
-
-
+             $db_user_password = $row['user_password'];
 
             if ($db_user_password != $user_password) {
                 $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
             }
 
-
-
-            // // Ensure to use backticks for column names and provide values for all columns
+          
             $query = "UPDATE users SET ";
             $query .= "user_firstname = '{$user_firstname}', ";
             $query .= "user_lastname= '{$user_lastname}', ";
@@ -71,13 +54,12 @@ if (isset($_GET['edit_user'])) {
 
 
             echo "User Updated" . " <a href='users.php'>View Users?</a>";
-
-
         }
 
     }
 
-} else {
+} 
+else {
     header("Location: index.php");
 
 }
@@ -117,11 +99,6 @@ if (isset($_GET['edit_user'])) {
         </select>
     </div>
 
-    <!-- <div class="form-group">
-        <label for="post_image">Post Image</label>
-        <input type="file" name="image">
-    </div> -->
-
     <div class="form-group">
         <label for="post_tags">Username</label>
         <input type="text" value="<?php echo $username ?>" class="form-control" name="username">
@@ -138,4 +115,6 @@ if (isset($_GET['edit_user'])) {
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="edit_user" value="Update User">
     </div>
+    <p style="color: red;">Enter the password to update the user</p>
+
 </form>

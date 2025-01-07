@@ -1,22 +1,10 @@
 <?php include "includes/admin_header.php" ?>
 
 <?php
-
 if (!is_admin($_SESSION['username'])) {
     header("Location:index.php");
 }
-
-
 ?>
-
-
-
-
-
-
-
-
-
 
 
 <div id="wrapper">
@@ -50,29 +38,18 @@ if (!is_admin($_SESSION['username'])) {
                             include "includes/edit_user.php";
                             break;
 
-                        case '200':
-                            echo 'NICE 200';
-                            break;
-
                         default:
                             include "includes/view_all_users.php";
-
                             break;
 
                     }
-
-
 
                     ?>
 
                 </div>
             </div>
-            <!-- /.row -->
-
         </div>
-        <!-- /.container-fluid -->
-
     </div>
 
-    <!-- /#page-wrapper -->
+    
     <?php include "includes/admin_footer.php" ?>

@@ -1,16 +1,13 @@
 <?php include "includes/admin_header.php" ?>
 
 <div id="wrapper">
-
-
     <!-- Navigation -->
     <?php include "includes/admin_navigation.php" ?>
 
     <div id="page-wrapper">
 
-        <div class="container-fluid">
+     <div class="container-fluid">
 
-            <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
@@ -22,7 +19,7 @@
                 </div>
             </div>
 
-            <!-- /.row -->
+           
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
@@ -39,6 +36,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <a href="posts.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
@@ -48,6 +46,7 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -56,13 +55,12 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-
                                     <div class='huge'><?php echo $comment_count = recordCount('comments'); ?></div>
-
                                     <div>Comments</div>
                                 </div>
                             </div>
                         </div>
+
                         <a href="comments.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
@@ -72,6 +70,7 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
@@ -80,9 +79,7 @@
                                     <i class="fa fa-user fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-
                                     <div class='huge'><?php echo $user_count = recordCount('users'); ?></div>
-
                                     <div> Users</div>
                                 </div>
                             </div>
@@ -96,6 +93,7 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-red">
                         <div class="panel-heading">
@@ -104,9 +102,7 @@
                                     <i class="fa fa-list fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-
                                     <div class='huge'><?php echo $category_count = recordCount('categories'); ?></div>
-
                                     <div>Categories</div>
                                 </div>
                             </div>
@@ -145,9 +141,10 @@
             $subscriber_count = mysqli_num_rows($select_all_subscribers);
 
             ?>
+        
+        <!-- Visualizing Data with Google Charts -->
 
             <div class="row">
-
                 <script type="text/javascript">
                     google.charts.load('current', { 'packages': ['bar'] });
                     google.charts.setOnLoadCallback(drawChart);
@@ -167,11 +164,9 @@
                             }
 
                             ?>
-
-                            // ['Posts', 1000],
-
                         ]);
-
+                     
+                        // Drawing the chart
                         var options = {
                             chart: {
                                 title: '',
@@ -184,16 +179,10 @@
                         chart.draw(data, google.charts.Bar.convertOptions(options));
                     }
                 </script>
+
                 <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
-
             </div>
-
-
-
         </div>
-        <!-- /.container-fluid -->
-
     </div>
 
-    <!-- /#page-wrapper -->
     <?php include "includes/admin_footer.php" ?>

@@ -2,7 +2,7 @@
 
 
 <?php include "includes/header.php"; ?>
-
+<?php session_start(); ?>
 
 <!-- Navigation -->
 <?php include "includes/navigation.php"; ?>
@@ -44,13 +44,6 @@
                         $post_content = substr($row['post_content'], 0, 100);
                         ?>
 
-
-                        <!-- <h1 class="page-header">
-                            Page Heading
-                            <small>Secondary Text</small>
-                        </h1> -->
-
-                        <!-- First Blog Post -->
                         <h2>
                             <a href="post.php?p_id=<?php echo $post_id; ?>">
                                 <?php echo $post_title ?>
@@ -65,8 +58,6 @@
                             <?php echo $post_date ?>
                         </p>
                         <hr>
-
-
                         <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                         <hr>
                         <p>

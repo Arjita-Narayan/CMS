@@ -6,12 +6,9 @@ function escape($string)
     return mysqli_real_escape_string($connection, trim($string));
 }
 
-
-
 function users_online()
 {
     if (isset($_GET['onlineusers'])) {
-
         global $connection;
 
         if (!$connection) {
@@ -36,15 +33,10 @@ function users_online()
         }
 
 
-    }//get request isset()
-
-
+    }
 }
+
 users_online();
-
-
-
-
 
 
 function confirmQuery($result)
@@ -54,28 +46,32 @@ function confirmQuery($result)
     if (!$result) {
         die("QUERY FAILED ." . mysqli_error($connection));
     }
-
 }
+
 
 function insert_categories()
 {
     global $connection;
 
     if (isset($_POST['submit'])) {
-        $cat_title = $_POST['cat_title'];
+        $cat_title = trim($_POST['cat_title']);
 
-        if ($cat_title == "" || empty($cat_title)) {
-            echo "this field should not be empty";
-        }
-        $query = "INSERT INTO categories(cat_title)";
-        $query .= "VALUE('{$cat_title}')";
-        $create_category_query = mysqli_query($connection, $query);
-        if (!$create_category_query) {
-            die('QUERY FAILED' . mysqli_error($connection));
-        }
+
+        if (empty($cat_title)) {
+            echo "This field should not be empty";
+            exit();
+        } else {
+            $query = "INSERT INTO categories(cat_title) VALUES('{$cat_title}')";
+            $create_category_query = mysqli_query($connection, $query);
+            if (!$create_category_query) {
+                die('QUERY FAILED' . mysqli_error($connection));
+            }
+        }  
     }
-
 }
+
+
+
 function findAllCategories()
 {
     global $connection;
@@ -92,8 +88,9 @@ function findAllCategories()
         echo "<td><a href='categories.php?edit={$cat_id}'>edit</a></td>";
         echo "</tr>";
     }
-
 }
+
+
 
 function deleteCategories()
 {
@@ -104,8 +101,9 @@ function deleteCategories()
         $delete_query = mysqli_query($connection, $query);
         header("Location:categories.php");//this line is used for refreshing the page
     }
-
 }
+
+
 //used this for dynamic display of
 function recordCount($table)
 {
@@ -116,6 +114,8 @@ function recordCount($table)
     confirmQuery($result);
     return $count;
 }
+
+
 
 function is_admin($username = '')
 {
@@ -134,10 +134,11 @@ function is_admin($username = '')
     }
 }
 
+
+
 function username_exists($username)
 {
     global $connection;
-
 
     $query = "SELECT username FROM users WHERE username = '$username'";
     $result = mysqli_query($connection, $query);
@@ -149,7 +150,5 @@ function username_exists($username)
         return false;
     }
 }
-
-
 
 ?>

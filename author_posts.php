@@ -1,6 +1,6 @@
 <?php include "includes/db.php"; ?>
 
-
+<?php session_start();?>
 <?php include "includes/header.php"; ?>
 
 
@@ -23,12 +23,6 @@
                 $the_post_author = $_GET['author'];
             }
 
-
-
-
-
-
-
             $query = "SELECT * from posts WHERE post_user = '{$the_post_author}' ";
             $select_all_posts_query = mysqli_query($connection, $query);
 
@@ -44,13 +38,6 @@
                 $post_content = $row['post_content'];
                 ?>
 
-
-                <!-- <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1> -->
-
-                <!-- First Blog Post -->
                 <h2>
                     <a href="#">
                         <?php echo $post_title ?>
